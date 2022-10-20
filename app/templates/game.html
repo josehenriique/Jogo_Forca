@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='game.css') }}">
+  <title>Game</title>
+</head>
+<body>
+
+  <form class="letters" id="form">
+    <button value="A" class="btn_letters" type="submit">A</button>
+    <button value="B" class="btn_letters" type="submit">B</button>
+    <button value="C" class="btn_letters" type="submit">C</button>
+    <button value="D" class="btn_letters" type="submit">D</button>
+    <button value="E" class="btn_letters" type="submit">E</button>
+    <button value="F" class="btn_letters" type="submit">F</button>
+    <button value="G" class="btn_letters" type="submit">G</button>
+    <button value="H" class="btn_letters" type="submit">H</button>
+    <button value="I" class="btn_letters" type="submit">I</button>
+    <button value="J" class="btn_letters" type="submit">J</button>
+    <button value="K" class="btn_letters" type="submit">K</button>
+    <button value="L" class="btn_letters" type="submit">L</button>
+    <button value="M" class="btn_letters" type="submit">M</button>
+    <button value="N" class="btn_letters" type="submit">N</button>
+    <button value="O" class="btn_letters" type="submit">O</button>
+    <button value="P" class="btn_letters" type="submit">P</button>
+    <button value="Q" class="btn_letters" type="submit">Q</button>
+    <button value="R" class="btn_letters" type="submit">R</button>
+    <button value="S" class="btn_letters" type="submit">S</button>
+    <button value="T" class="btn_letters" type="submit">T</button>
+    <button value="U" class="btn_letters" type="submit">U</button>
+    <button value="V" class="btn_letters" type="submit">V</button>
+    <button value="W" class="btn_letters" type="submit">W</button>
+    <button value="X" class="btn_letters" type="submit">X</button>
+    <button value="X" class="btn_letters" type="submit">X</button>
+    <button value="Y" class="btn_letters" type="submit">Y</button>
+    <button value="Z" class="btn_letters" type="submit">Z</button>
+  </form>
+
+  <main>
+    <div class="space"></div>
+  </main>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+
+  const name = 'PATA'
+  const space = []
+  const score = 0
+  
+  for(i in name){
+    space.push("_")
+  }
+
+  const chances = 4
+  let tentativas = 0
+  
+  
+  
+  $(document).on("submit", "#form", function(e){
+    e.preventDefault()
+    
+    const letters = []
+
+    if (tentativas < chances){
+
+      $('.btn_letters').on('click', function(e){
+        e.preventDefault()
+  
+        // Pegando valor da letra
+        let letter = $(this).val()
+  
+        letters.push(letter)
+        $(this).attr('disabled', true)
+
+        // Verificando a letra
+        verification(letter)
+        loadingSpace()
+          
+      })
+
+    } 
+
+  })
+  
+
+  loadingSpace()
+
+  function verification(letter){
+      let has_letter_in_name = false
+      
+      // Verificando se acertou ou errou
+      for (l of name){
+        
+        if (letter == l){
+          console.log(l)
+          has_letter_in_name = true
+          break
+        }
+        else{
+          has_letter_in_name = false
+        }
+
+      }
+
+
+      // Posicionando as letras
+      if (has_letter_in_name == true){
+
+        for(i in name){
+          if (letter == name[i]){
+            space[i] = letter
+          }
+        }
+
+      } else {
+
+        tentativas += 1
+        console.log(tentativas)
+
+      }
+
+      if (tentativas > chances){      
+
+        $('.btn_letters').prop('disabled', true)
+        console.log("Acabou suas chances")
+
+      }
+
+    }
+    
+    function loadingSpace(){
+      let space_html = []
+
+      for(i of space){
+        space_html += `<h1>${i}</h1>`
+      }
+
+      $(".space").html(space_html)
+    }
+
+</script>
+</html>

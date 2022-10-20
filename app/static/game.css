@@ -1,0 +1,12 @@
+body{
+  background-color: orange;
+}
+
+.space{
+  display: flex;
+  flex-direction: row;
+}
+
+.space h1{
+  margin: 10px;
+}
