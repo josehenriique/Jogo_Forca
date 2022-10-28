@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  {% for tema in temas %}
+  {% for tema in nomes %}
 
     <a href="{{ url_for('game', tema=tema, user=user)}}">
       <button>{{ tema }}</button>
