@@ -8,7 +8,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 print(basedir)
 
 # Use a service account.
-cred = credentials.Certificate(f'{basedir}\\temas-forca-firebase-adminsdk-8bsr7-281203d38e.json')
+cred = credentials.Certificate(f'{basedir}/temas-forca-firebase-adminsdk-8bsr7-281203d38e.json')
 
 app = firebase_admin.initialize_app(cred)
 
