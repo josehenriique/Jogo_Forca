@@ -14,35 +14,33 @@ async function getData(){
 
 }
 
-// if (localStorage.getItem('indice_palavra') != '1'){
-//   localStorage.setItem('indice_palavra', 1)
-// }
+if (localStorage.getItem('indice_palavra') === null){
+  localStorage.setItem('indice_palavra', 1)
+}
+
+if (localStorage.getItem('score') === null){
+  localStorage.setItem('score', 0)
+}
+
+// localStorage.removeItem('indice_palavra')
 
 async function logic(data){
 
+  let scoreLocal = 1000
+  console.log(scoreLocal)
   let dados = await data
   let name
 
-  if (localStorage.getItem('indice_palavra') == '4'){
-    localStorage.setItem('indice_palavra', 1)
-  }
-  
-  function mudarPalavra(){
-  
-    storage = localStorage.getItem('indice_palavra')
-    console.log(storage)
+  let quantPalavras = Object.keys(dados.palavras).length + 1
 
-    name = dados.palavras[storage].nome
-    let indice = parseInt(storage) + 1
-    console.log(indice)
-    localStorage.setItem('indice_palavra', indice)
-  
+  if (localStorage.getItem('indice_palavra') == quantPalavras.toString()){
+    localStorage.setItem('indice_palavra', 1)
+    localStorage.setItem('score', 0)
   }
-  
+
   mudarPalavra()
   
   const space = []
-  const score = 0
   
   for(i in name){
     space.push("_")
@@ -50,44 +48,84 @@ async function logic(data){
   
   const chances = 4
   let tentativas = 0
-    
-    
-    
+  
+  
+  
   $(document).on("submit", "#form", function(e){
     e.preventDefault()
     
     const letters = []
-  
+    
     if (tentativas < chances){
-  
+      
       $('.btn_letters').on('click', function(e){
         e.preventDefault()
-  
+        
         // Pegando valor da letra
         let letter = $(this).val()
-  
+        
         letters.push(letter)
         $(this).attr('disabled', true)
-  
+        
         // Verificando a letra
         verification(letter)
         loadingSpace()
-          
+        
       })
-  
+      
     } 
-  
+    
   })
   
   
   loadingSpace()
+
+  function mudarPalavra(){
+  
+    let storage = localStorage.getItem('indice_palavra')
+    console.log(storage)
+
+    name = (dados.palavras[storage].nome).toUpperCase()
+    let dica = dados.palavras[storage].dica
+    let conceito = dados.palavras[storage].conceito
+
+    loadingDica(dica)
+    dicaExtra(conceito)
+
+    let indice = parseInt(storage) + 1
+    console.log(indice)
+    localStorage.setItem('indice_palavra', indice)
+  
+  }
+
+  function cadastroScore(){
+
+    let score = parseInt(localStorage.getItem('score'))
+
+    localStorage.setItem('score', scoreLocal + score)
+    console.log('A pontuação desse rodada foi: ', score)
+
+  }
+
+  function dicaExtra(conceito){
+
+    let btn = document.getElementById('btn_extra')
+    let div = document.querySelector('.conceito')
+
+    btn.addEventListener('click', () => {
+
+      div.innerHTML = `<p>${conceito}</p>`
+
+    })
+
+  }
   
   function verification(letter){
-      let has_letter_in_name = false
+    let has_letter_in_name = false
+    
+    // Verificando se acertou ou errou
+    for (l of name){
       
-      // Verificando se acertou ou errou
-      for (l of name){
-        
         if (letter == l){
           console.log(l)
           has_letter_in_name = true
@@ -112,7 +150,9 @@ async function logic(data){
       } else {
   
         tentativas += 1
+        scoreLocal -= 100
         console.log(tentativas)
+        console.log(scoreLocal)
   
       }
   
@@ -120,9 +160,12 @@ async function logic(data){
   
         $('.btn_letters').prop('disabled', true)
         console.log("Acabou suas chances")
+        cadastroScore()
         location.reload()
   
       }
+
+      verificationSpace()
   
     }
     
@@ -134,6 +177,35 @@ async function logic(data){
       }
   
       $(".space").html(space_html)
+    }
+
+    function loadingDica(dica){
+
+      let div = document.querySelector('.dica')
+      div.innerHTML = `<p>${dica}</p>`
+
+    }
+
+    function verificationSpace(){
+      has_line = true
+
+      for(item of space){
+
+        if (item == "_"){
+          has_line = true
+          break
+        } else {
+          has_line = false
+        }
+
+      }
+
+      if (has_line == false){
+        console.log('Você completou a palavra')
+        cadastroScore()
+        setTimeout(location.reload(), 3000)
+        has_line = true
+      } 
     }
 
 }
