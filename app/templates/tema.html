@@ -16,7 +16,10 @@
 
   {% endfor %}
 
-  
+  <a href="{{ url_for('cadastro', user=user) }}">
+    <button>Cadastrar tema</button>
+  </a>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="{{ url_for('static', filename='scripts/tema.js') }}"></script>

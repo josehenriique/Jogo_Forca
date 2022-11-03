@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Tema</title>
+</head>
+<body>
+
+  <main>
+
+    <form action="" method="post">
+
+      {{ form.csrf_token }}
+
+      <div class="tema">
+        <h1>Escolha o nome do seu Tema, lembrando que ele aparecerar para todos os usuários</h1>
+        {{ form.tema(_name="tema", placeholder="Tema") }}
+      </div>
+
+      <div class="palavras">
+        <h2>1° Palavra</h2>
+        {{ form.palavra_1(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_1(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_1(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>2° Palavra</h2>
+        {{ form.palavra_2(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_2(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_2(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>3° Palavra</h2>
+        {{ form.palavra_3(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_3(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_3(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>4° Palavra</h2>
+        {{ form.palavra_4(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_4(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_4(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>5° Palavra</h2>
+        {{ form.palavra_5(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_5(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_5(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>6° Palavra</h2>
+        {{ form.palavra_6(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_6(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_6(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>7° Palavra</h2>
+        {{ form.palavra_7(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_7(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_7(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>8° Palavra</h2>
+        {{ form.palavra_8(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_8(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_8(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>9° Palavra</h2>
+        {{ form.palavra_9(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_9(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_9(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>10° Palavra</h2>
+        {{ form.palavra_10(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_10(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_10(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>11° Palavra</h2>
+        {{ form.palavra_11(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_11(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_11(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <div class="palavras">
+        <h2>12° Palavra</h2>
+        {{ form.palavra_12(placeholder="Qual será a palavra?")}}
+        <h2>Dica: </h2>
+        {{ form.dica_12(placeholder="Qual será a dica da palavra?")}}
+        <h2>Dica extra: </h2>
+        {{ form.conceito_12(placeholder="Qual será a dica extra da palavra?")}}
+      </div>
+
+      <button type="submit" >Cadastrar Tema</button>
+
+    </form>
+
+    <a href="{{ url_for('tema', user=user) }}">
+      <button>Voltar para escolher o tema</button>
+    </a>
+
+  </main>
+  
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='scripts/cadastro.js') }}"></script>
+</html>

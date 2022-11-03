@@ -13,29 +13,3 @@ cred = credentials.Certificate(f'{basedir}/temas-forca-firebase-adminsdk-8bsr7-2
 app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
-
-
-# get temas
-
-temas_ref = db.collection(u'temas')
-docs = temas_ref.stream()
-
-def temas():
-  temas = []
-
-  for doc in docs:
-    temas.append(doc.to_dict())
-
-  return temas
-
-def nome_temas(temas):
-  nomes = []
-
-  for item in temas:
-    nomes.append(item['tema'])
-
-  return nomes
-
-
-Temas = temas()
-Nomes = nome_temas(Temas)

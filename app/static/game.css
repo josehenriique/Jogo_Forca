@@ -1,5 +1,5 @@
 body{
-  background-color: orange;
+  background-color: rgb(85, 179, 255);
 }
 
 .space{
@@ -9,4 +9,8 @@ body{
 
 .space h1{
   margin: 10px;
+}
+
+div img{
+  height: 40px;
 }

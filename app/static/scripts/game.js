@@ -22,12 +22,22 @@ if (localStorage.getItem('score') === null){
   localStorage.setItem('score', 0)
 }
 
+if (localStorage.getItem('dica') === null){
+  localStorage.setItem('dica', 0)
+}
+
+if(parseInt(localStorage.getItem('dica')) == 3) {
+  $('#btn_extra').prop('disabled', true)
+  $(`#dica_1`).hide()
+  $(`#dica_2`).hide()
+  $(`#dica_3`).hide()
+}
+
 // localStorage.removeItem('indice_palavra')
 
 async function logic(data){
 
   let scoreLocal = 1000
-  console.log(scoreLocal)
   let dados = await data
   let name
 
@@ -76,25 +86,46 @@ async function logic(data){
     } 
     
   })
+
+  $('#btn_extra').on('click', () => {
+
+    let storage_dica = parseInt(localStorage.getItem('dica'))
+    console.log('Storage:', storage_dica)
+    let dicas, storage
+
+    if(storage_dica < 3){
+      dicas = parseInt(storage_dica) + 1
+
+      storage = parseInt(localStorage.getItem('score'))
+
+      $(`#dica_${dicas}`).hide()
+      localStorage.setItem('score', storage - 100)
+      localStorage.setItem('dica', dicas)
+
+    }
+
+    console.log('DICA EXTRA')
+    console.log(localStorage.getItem('dica'))
+    console.log(storage)
+
+  })
   
   
   loadingSpace()
 
   function mudarPalavra(){
   
-    let storage = localStorage.getItem('indice_palavra')
+    let storage = parseInt(localStorage.getItem('indice_palavra')) + 1
     console.log(storage)
 
-    name = (dados.palavras[storage].nome).toUpperCase()
+    name = (dados.palavras[storage.toString()].nome).toUpperCase()
     let dica = dados.palavras[storage].dica
     let conceito = dados.palavras[storage].conceito
 
     loadingDica(dica)
     dicaExtra(conceito)
 
-    let indice = parseInt(storage) + 1
-    console.log(indice)
-    localStorage.setItem('indice_palavra', indice)
+    localStorage.setItem('indice_palavra', storage)
   
   }
 
@@ -104,6 +135,14 @@ async function logic(data){
 
     localStorage.setItem('score', scoreLocal + score)
     console.log('A pontuação desse rodada foi: ', score)
+
+    data = {
+      score: score
+    }
+
+    alert(JSON.stringify(data))
+
+    return JSON.stringify(data)
 
   }
 
