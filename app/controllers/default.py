@@ -124,8 +124,7 @@ def api_tema(tema):
 @app.route('/game/<user>/<tema>')
 def game(tema, user):
 
-  return render_template('game.html', user=user)
-
+  return render_template('game.html', user=user, tema=tema)
 
 @app.route('/cadastro/<user>', methods=['GET', 'POST'])
 def cadastro(user):

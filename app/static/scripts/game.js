@@ -5,6 +5,13 @@ let path = $(location).attr('pathname')
 let array = path.split("/")
 let path_tema = array[array.length - 1]
 
+$('#result').hide()
+$('#next').show()
+$('#next').prop('disabled', true)
+
+$('.container').show()
+$('.result').hide()
+
 async function getData(){
 
   let response = await fetch(`https://${host}/tema/api/${path_tema}`)
@@ -48,7 +55,11 @@ async function logic(data){
     localStorage.setItem('score', 0)
   }
 
-  mudarPalavra()
+  if(localStorage.getItem('indice_palavra') < quantPalavras){
+
+    mudarPalavra()
+
+  }
   
   const space = []
   
@@ -109,13 +120,27 @@ async function logic(data){
     console.log(storage)
 
   })
+
+  $('#next').on('click', () => {
+    location.reload()
+  })
+
+  $('#result').on('click', () => {
+    $('.container').hide()
+    $('.result').show()
+  })
   
   
   loadingSpace()
 
   function mudarPalavra(){
   
-    let storage = parseInt(localStorage.getItem('indice_palavra')) + 1
+    let storage = parseInt(localStorage.getItem('indice_palavra'))
+
+    if (storage == 0){
+      storage = 1
+    }
+
     console.log(storage)
 
     name = (dados.palavras[storage.toString()].nome).toUpperCase()
@@ -125,8 +150,8 @@ async function logic(data){
     loadingDica(dica)
     dicaExtra(conceito)
 
-    localStorage.setItem('indice_palavra', storage)
-  
+    storage += 1
+    localStorage.setItem('indice_palavra', storage)  
   }
 
   function cadastroScore(){
@@ -136,13 +161,11 @@ async function logic(data){
     localStorage.setItem('score', scoreLocal + score)
     console.log('A pontuação desse rodada foi: ', score)
 
-    data = {
-      score: score
-    }
+    // data = {
+    //   score: score
+    // }
 
-    alert(JSON.stringify(data))
-
-    return JSON.stringify(data)
+    // return JSON.stringify(data)
 
   }
 
@@ -240,9 +263,21 @@ async function logic(data){
       }
 
       if (has_line == false){
+        
+        let list_nomes = []
+        
+        for(item of Object.keys(dados.palavras)){
+          list_nomes.push((dados.palavras[item].nome).toUpperCase())
+        }
+        
+        if(name == list_nomes[list_nomes.length - 1]){
+          $('#result').show()
+          $('#next').hide()
+        } 
+        
         console.log('Você completou a palavra')
         cadastroScore()
-        setTimeout(location.reload(), 3000)
+        $('#next').prop('disabled', false)
         has_line = true
       } 
     }
