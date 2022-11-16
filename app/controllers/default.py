@@ -22,7 +22,6 @@ def login():
   url_tema = f"/{user_name}"
 
   # Cadastro de usuários
-
   users_ref = db.collection(u'users')
   docs_user = users_ref.stream()
 
@@ -40,19 +39,23 @@ def login():
     for user in users:
       users_name.append(user['user'])
     
+    print(users_name)
     return users_name
 
   Users = docsUser()
-  NameUsers = userName(Users)
 
-  def cadastroUser():
+  def cadastroUser(usuarios):
 
     data = {
         u'user': u'{}'.format(user_name),
         u'score': 0
       }
 
-    for item in NameUsers:
+    print(usuarios)
+
+    has_user = True
+
+    for item in usuarios:
         has_user = True
 
         if item == user_name:
@@ -61,11 +64,14 @@ def login():
         else:
           has_user = False
         
-        if has_user == False:
-          db.collection(u'users').document(u'{}'.format(user_name)).set(data)
+    if has_user == False:
+      db.collection(u'users').document(u'{}'.format(user_name)).set(data)
+    else:
+      print('Nenhuma cadastro feito')
 
-  cadastroUser()
+  cadastroUser(userName(Users))
 
+  print(Users)
   return render_template('login.html', form=form, url_tema=url_tema)
 
 
@@ -95,7 +101,46 @@ def tema(user):
   Temas = temas()
   Nomes = nome_temas(Temas)
 
-  return render_template('tema.html', temas=Temas, nomes=Nomes, user=user)
+  # Rankeado os usuários
+
+  users_ref = db.collection(u'users')
+  docs_user = users_ref.stream()
+
+  def docsUser():
+    docs = []
+
+    for doc in docs_user:
+      docs.append(doc.to_dict())
+    
+    return docs
+
+  def userName(users):
+    users_name = []
+
+    for user in users:
+      users_name.append(user['user'])
+    
+    return users_name
+
+  Users = docsUser()
+  NameUsers = userName(Users)
+
+  def ordemDecrescente(Users):
+    return Users['score']
+
+  Users.sort(key=ordemDecrescente, reverse=True)
+
+  ranking = Users[:3]
+
+  # Minha pontuação
+
+  my_score = None
+
+  for item in Users:
+    if item['user'] == user:
+      my_score = item
+
+  return render_template('tema.html', temas=Temas, nomes=Nomes, user=user, ranking=ranking, my_score=my_score)
 
 
 @app.route('/tema/api/<tema>', methods=['GET'])
@@ -125,6 +170,47 @@ def api_tema(tema):
 def game(tema, user):
 
   return render_template('game.html', user=user, tema=tema)
+
+@app.route('/game/<user>/<tema>/<score>')
+def result(user, tema, score):
+
+  # Extraindo usuários do servidor
+
+  users_ref = db.collection(u'users')
+  docs_user = users_ref.stream()
+
+  def docsUser():
+    docs = []
+
+    for doc in docs_user:
+      docs.append(doc.to_dict())
+    
+    return docs
+
+  Users = docsUser()
+
+  # Cadastrando pontuação
+
+  def cadastroScore(dicUsers):
+
+    for item in dicUsers:
+      if item['user'] == user:
+
+        userScore = int(item['score'])
+        newScore = int(score)
+
+        if userScore < newScore:
+          db.collection(u'users').document(u'{}'.format(item['user'])).update({u'score': newScore})
+
+        else:
+          print('Seu record: ', item['score'])
+
+
+  cadastroScore(Users)
+
+  return render_template('result.html', user=user, tema=tema, score=score)
+
+# Cadastro de Tema
 
 @app.route('/cadastro/<user>', methods=['GET', 'POST'])
 def cadastro(user):

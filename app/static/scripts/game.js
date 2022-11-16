@@ -5,16 +5,25 @@ let path = $(location).attr('pathname')
 let array = path.split("/")
 let path_tema = array[array.length - 1]
 
-$('#result').hide()
+// Resultado
+$('#result').show()
 $('#next').show()
 $('#next').prop('disabled', true)
 
 $('.container').show()
-$('.result').hide()
+
+// Bonecos
+
+$('#completo').show()
+$('#uma-perna').hide()
+$('#sem-perna').hide()
+$('#um-braco').hide()
+$('#tronco').hide()
+$('#cabeca').hide()
 
 async function getData(){
 
-  let response = await fetch(`https://${host}/tema/api/${path_tema}`)
+  let response = await fetch(`http://${host}/tema/api/${path_tema}`)
   let data = response.json()
 
   return data
@@ -44,7 +53,6 @@ if(parseInt(localStorage.getItem('dica')) == 3) {
 
 async function logic(data){
 
-  let scoreLocal = 1000
   let dados = await data
   let name
 
@@ -67,10 +75,8 @@ async function logic(data){
     space.push("_")
   }
   
-  const chances = 4
+  const chances = 5
   let tentativas = 0
-  
-  
   
   $(document).on("submit", "#form", function(e){
     e.preventDefault()
@@ -127,7 +133,11 @@ async function logic(data){
 
   $('#result').on('click', () => {
     $('.container').hide()
-    $('.result').show()
+
+    let score = localStorage.getItem('score')
+    let url = $(location).attr('href')
+    window.location=`${url}/${score}`
+
   })
   
   
@@ -154,18 +164,105 @@ async function logic(data){
     localStorage.setItem('indice_palavra', storage)  
   }
 
-  function cadastroScore(){
+  function cadastroScore(pontuacao){
 
     let score = parseInt(localStorage.getItem('score'))
 
-    localStorage.setItem('score', scoreLocal + score)
-    console.log('A pontuação desse rodada foi: ', score)
+    localStorage.setItem('score', (pontuacao + score))
+    alert('A pontuação desse rodada foi: ' + localStorage.getItem('score'))
 
     // data = {
     //   score: score
     // }
 
     // return JSON.stringify(data)
+
+  }
+
+  function puppet(tentativas){
+
+    switch (tentativas) {
+      case 0:
+        $('#completo').show()
+        $('#uma-perna').hide()
+        $('#sem-perna').hide()
+        $('#um-braco').hide()
+        $('#tronco').hide()
+        $('#cabeca').hide()
+
+        return 500;
+
+        break;
+      case 1:
+        $('#completo').hide()
+        $('#uma-perna').show()
+        $('#sem-perna').hide()
+        $('#um-braco').hide()
+        $('#tronco').hide()
+        $('#cabeca').hide()
+
+        return 400;
+
+        break;
+      case 2:
+        $('#completo').hide()
+        $('#uma-perna').hide()
+        $('#sem-perna').show()
+        $('#um-braco').hide()
+        $('#tronco').hide()
+        $('#cabeca').hide()
+
+        return 300;
+
+        break;
+      case 3:
+        $('#completo').hide()
+        $('#uma-perna').hide()
+        $('#sem-perna').hide()
+        $('#um-braco').show()
+        $('#tronco').hide()
+        $('#cabeca').hide()
+
+        return 200;
+
+        break;
+      case 4:
+        $('#completo').hide()
+        $('#uma-perna').hide()
+        $('#sem-perna').hide()
+        $('#um-braco').hide()
+        $('#tronco').show()
+        $('#cabeca').hide()
+
+        return 100;
+
+        break;
+      case 5:
+        $('#completo').hide()
+        $('#uma-perna').hide()
+        $('#sem-perna').hide()
+        $('#um-braco').hide()
+        $('#tronco').hide()
+        $('#cabeca').show()
+
+        return 50;
+
+        break;
+
+      case 6:
+        $('#completo').hide()
+        $('#uma-perna').hide()
+        $('#sem-perna').hide()
+        $('#um-braco').hide()
+        $('#tronco').hide()
+        $('#cabeca').show()
+
+        return 10;
+
+        break;
+      default:
+        break;
+    }
 
   }
 
@@ -212,9 +309,8 @@ async function logic(data){
       } else {
   
         tentativas += 1
-        scoreLocal -= 100
+        console.log(puppet(tentativas))
         console.log(tentativas)
-        console.log(scoreLocal)
   
       }
   
@@ -222,8 +318,10 @@ async function logic(data){
   
         $('.btn_letters').prop('disabled', true)
         console.log("Acabou suas chances")
-        cadastroScore()
-        location.reload()
+        cadastroScore(puppet(tentativas))
+
+        $('#btn_extra').prop('disabled', true)
+        $('#next').prop('disabled', false)
   
       }
 
@@ -276,7 +374,7 @@ async function logic(data){
         } 
         
         console.log('Você completou a palavra')
-        cadastroScore()
+        cadastroScore(puppet(tentativas))
         $('#next').prop('disabled', false)
         has_line = true
       } 

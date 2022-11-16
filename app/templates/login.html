@@ -4,31 +4,64 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/universal.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
   <title>Forca - Login</title>
 </head>
-<body>
-  
-  <form action="" method="post">
 
-    {{ form.csrf_token }}
+<body onload="loading()">
+  <div class="box-load">
+    <div class="pre"></div>
+  </div>
+
+  <main>
+
+    <img src="{{ url_for('static', filename='src/decorator/pattern.png') }}" alt="" id="pattern-up" class="pattern">
+
+    <div class="container">
+
+      <div class="name-game">
+        <h1 id="title">Jogo da Forca</h1>
+        <p id="sub-title">sem forca</p>
+      </div>
+
+      <div class="form">
+        <div class="elements">
+          <h1>Login</h1>
+          
+          <form action="" method="post">
+
+            {{ form.csrf_token }}
 
 
-    <div>
-      <label for="name">Nome</label>
-      {{ form.name(_name="name", placeholder="Seu nome") }}
-    </div>
-    <div>
-      <label for="last_name">Sobrenome</label>
-      {{ form.last_name(_name="last_name", placeholder="Seu sobrenome") }}
-    </div>
-    <button type="submit">Enviar</button>
+            <div class="name">
+              <label for="name">Nome</label>
+              {{ form.name(_name="name", placeholder="Seu nome", id="name") }}
+              <img src="{{ url_for('static', filename='src/decorator/tick-circle.png') }}" alt="" id="tick_name">
+            </div>
+            <div class="last_name">
+              <label for="last_name">Sobrenome</label>
+              {{ form.last_name(_name="last_name", placeholder="Seu sobrenome", id="last_name") }}
+              <img src="{{ url_for('static', filename='src/decorator/tick-circle.png') }}" alt="" id="tick_last_name">
+            </div>
+            <button type="submit" id="send" class="comum">Enviar</button>
 
 
-  </form>
+          </form>
 
-  <a href="{{ url_for('tema', user=url_tema)}} ">
-    <button>Prosseguir</button>
-  </a>
+          <a href="{{ url_for('tema', user=url_tema)}} ">
+            <button id="next"class="comum">Prosseguir</button>
+          </a>
 
+        </div>
+      </div>
+
+    </div>  
+    
+    <img src="{{ url_for('static', filename='src/decorator/pattern.png') }}" alt="" id="pattern-down" class="pattern">
+
+  </main>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
 </html>

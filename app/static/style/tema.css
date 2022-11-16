@@ -1,0 +1,399 @@
+:root{
+  /* FONTS */
+
+  /* font: style / wight / size / family */
+  --h0: normal 400 48px 'Anton', sans-serif;
+  --h1: normal 900 36px 'Poppins', sans-serif;
+  --h2: normal 700 28px 'Poppins', sans-serif;
+  --h3: normal 700 22px 'Poppins', sans-serif;
+  --h4: normal 400 20px 'Poppins', sans-serif;
+  --p1: normal 400 16px 'Poppins', sans-serif; /* p3 */
+  --p2: normal 400 14px 'Poppins', sans-serif; /* p1 */
+  --p3: normal 400 12px 'Poppins', sans-serif; /* p2 */
+  --p4: normal 400 10px 'Poppins', sans-serif; /* p4 */
+
+  /* COLORS */
+
+  --white: #FFFFFF;
+
+  --brand-purple-0-5:#F4EFFE;
+  --brand-purple-1:#E9DFFC;
+  --brand-purple-1-5:#DECFFB;
+  --brand-purple-2:#D3BFF9;
+  --brand-purple-3:#BE9FF6;
+  --brand-purple-4:#A87FF3;
+  --brand-purple-5:#925FF0;
+  --brand-purple-6:#784DC7;
+  --brand-purple-7:#5E3A9E;
+  --brand-purple-8:#432876;
+  --brand-purple-8-5:#361F61;
+  --brand-purple-9:#29154D;
+  --brand-purple-9-5:#1C0C38;
+  --brand-purple-10:#0F0324;
+
+  --brand-green-0-5:#F6FFF6;
+  --brand-green-1:#EDFFEC;
+  --brand-green-1-5:#E3FEE3;
+  --brand-green-2:#DAFED9;
+  --brand-green-3:#C8FEC7;
+  --brand-green-4:#B5FDB4;
+  --brand-green-5:#A3FDA1;
+  --brand-green-6:#83E281;
+  --brand-green-7:#64C661;
+  --brand-green-8:#44AB42;
+  --brand-green-8-5:#349D32;
+  --brand-green-9:#258F22;
+  --brand-green-9-5:#158212;
+  --brand-green-10:#057402;
+
+  --brand-gray--1:#9F9F9F;
+  --brand-gray-0:#9F9F9F;
+  --brand-gray-0-5:#909090;
+  --brand-gray-1:#818181;
+  --brand-gray-1-5:#737373;
+  --brand-gray-2:#646464;
+  --brand-gray-3:#464646;
+  --brand-gray-4:#292929;
+  --brand-gray-5:#0B0B0B;
+  --brand-gray-6:#090909;
+  --brand-gray-7:#070707;
+  --brand-gray-8:#040404;
+  --brand-gray-8-5:#030303;
+  --brand-gray-9:#020202;
+  --brand-gray-9-5:#010101;
+  --brand-gray-10:#000000;
+
+  /* Complementary */
+
+  --compl-yellow-0-5:#FFFDED;
+  --compl-yellow-1:#FFFADB;
+  --compl-yellow-1-5:#FFF8C9;
+  --compl-yellow-2:#FFF5B7;
+  --compl-yellow-3:#FFF194;
+  --compl-yellow-4:#FFEC70;
+  --compl-yellow-5:#FFE74C;
+  --compl-yellow-6:#D3BF3D;
+  --compl-yellow-7:#A7972E;
+  --compl-yellow-8:#7B6E1E;
+  --compl-yellow-8-5:#655A17;
+  --compl-yellow-9:#4F460F;
+  --compl-yellow-9-5:#393208;
+  --compl-yellow-10:#231E00;
+
+  --compl-red-0-5:#FFEEF0;
+  --compl-red-1:#FFDEE0;
+  --compl-red-1-5:#FFCDD1; 
+  --compl-red-2:#FFBDC1;
+  --compl-red-3:#FF9BA2;
+  --compl-red-4:#FF7A83;
+  --compl-red-5:#FF5964;
+  --compl-red-6:#D64751;
+  --compl-red-7:#AC353D;
+  --compl-red-8:#83242A;
+  --compl-red-8-5:#6E1B20;
+  --compl-red-9:#591216;
+  --compl-red-9-5:#45090D;
+  --compl-red-10:#300003;
+
+  --compl-blue-0-5:#EBF6FF;
+  --compl-blue-1:#D7EDFF;
+  --compl-blue-1-5:#C2E5FF;
+  --compl-blue-2:#AEDCFF;
+  --compl-blue-3:#86CAFF;
+  --compl-blue-4:#5DB9FF;
+  --compl-blue-5:#35A7FF;
+  --compl-blue-6:#2A87CE;
+  --compl-blue-7:#20679E;
+  --compl-blue-8:#15476D;
+  --compl-blue-8-5:#103755;
+  --compl-blue-9:#0B273D;
+  --compl-blue-9-5:#051724;
+  --compl-blue-10:#00070C;
+
+  /* SHADOWS */
+
+  --shadow-purple-2: 0px 2px 4px rgba(151, 71, 255, 0.08);
+  --shadow-purple-4: 0px 4px 8px rgba(151, 71, 255, 0.08);
+  --shadow-purple-0: 0px 0px 50px -10px rgba(151, 71, 255, 0.08);
+  --shadow-gray-2: 0px 2px 4px rgba(41, 41, 41, 0.08);
+  --shadow-gray-4: 0px 4px 8px rgba(41, 41, 41, 0.08);
+  --shadow-gray-6: 0px 6px 12px rgba(41, 41, 41, 0.08);
+  --shadow-gray-0: 0px 0px 50px -10px rgba(41, 41, 41, 0.08);
+
+}
+
+/* Carregamento */
+
+.pre{
+  width: 80px;
+  height: 80px;
+  background-image: url("../src/gif/load.gif");
+  background-position: center;
+  background-size: contain;
+
+  animation: load 2s infinite linear;
+}
+
+.box-load{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background-color: blue; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Predefinição */
+
+main{
+  width: 100vw;
+  height: 100vh;
+}
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; 
+  position: relative;
+  
+  padding: 40px 0px;
+  box-sizing: border-box;
+
+  z-index: 1;
+}
+
+/* Buttons */
+
+button{
+  width: 250px;
+  margin-bottom: 10px;
+}
+
+#voltar{
+  margin: auto;
+  margin-top: 40px;
+}
+
+/* Ranking */
+
+.ranking{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; 
+  position: relative;
+  
+  padding: 60px 0px;
+  box-sizing: border-box;
+
+  z-index: 1;
+}
+
+.ranking .name-game{
+  justify-content: center;
+}
+
+.tabela{
+  position: relative;
+  width: 310px;
+}
+
+table{
+  width: 100%;
+
+  border: 3px solid var(--brand-gray-4);
+  border-radius: 8px;
+  border-collapse: collapse;
+
+}
+
+table td, table th{
+  padding: 15px;
+  text-align: center;
+}
+
+table th{
+  font: var(--h3);
+  color: var(--white);
+  background-color: var(--brand-purple-4);
+}
+
+tr{
+  font: var(--p2);
+  background-color: var(--brand-purple-1);
+}
+
+tr:nth-child(even){
+  background-color: var(--brand-purple-1-5);
+}
+
+.my-score{
+  font: var(--p1);
+  text-align: center;
+  /* padding: 40px 30px; */
+  box-sizing: border-box;
+
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--shadow-gray-4);
+
+  margin-top: 15px;
+}
+
+/* Temas */
+
+.temas{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; 
+  position: relative;
+  
+  padding: 60px 0px;
+  box-sizing: border-box;
+
+  z-index: 1;
+}
+
+.temas .name-game{
+  justify-content: center;
+}
+
+.block{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  padding: 20px;
+  /* gap: 30px; */
+  
+  width: 400px;
+  height: auto;
+  box-sizing: border-box;
+
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--shadow-gray-4);
+}
+
+.block button{
+
+  width: auto;
+  margin: 5px;
+
+}
+
+.temas #voltar{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.temas a{
+  margin-bottom: 0;
+}
+
+.temas #cadastro button{
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.temas #cadastro button:hover{
+  background-color: var(--brand-green-4);
+}
+
+.temas #cadastro button:hover{
+  background-color: var(--brand-green-7);
+}
+
+/* Medalhas */
+
+#medalhas{
+  height: 158.7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+
+  top: 65px;
+  right: 15px;
+}
+
+.medalhas{
+  width: 30px;
+  height: auto;
+}
+
+/* Pattern */
+
+.pattern{
+  width: 350px;
+  height: auto;
+  position: absolute;
+  /* filter: blur(5px); */
+  
+}
+
+#pattern-up{
+  top: 0%;
+  left: 0%;
+  
+}
+
+#pattern-down{
+  bottom: 0%;
+  right: 0%;
+  transform: rotate(180deg);
+}
+
+/* Media */
+
+@media (max-width: 770px){
+
+  .pattern{
+    display: none;
+  }
+
+  main{
+    background-color: #8EC5FC;
+    background-image: linear-gradient(45deg, var(--compl-blue-3) 0%, var(--brand-purple-3) 100%);
+  }
+
+  .welcome{
+    box-sizing: border-box;
+    padding: 5px 8px;
+
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow-gray-4);
+  }
+
+}
+
+@media (max-width: 425px){
+  
+  .pattern{
+    position: fixed;
+    width: 45vw;
+  }
+
+  .name-game, #title, #sub-title, .tabela, .welcome{
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 450px){
+  .welcome{
+    width: 250px;
+  }
+}

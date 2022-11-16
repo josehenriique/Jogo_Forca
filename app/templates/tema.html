@@ -4,21 +4,107 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escolha um tema</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/universal.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/tema.css') }}">
+  <title>Menu</title>
 </head>
-<body>
+<body onload="loading()">
 
-  {% for tema in nomes %}
+  <div class="box-load">
+    <div class="pre"></div>
+  </div>
+  
+  <main>
+    
+    <img src="{{ url_for('static', filename='src/decorator/pattern.png') }}" alt="" id="pattern-up" class="pattern">
+    
+    <div class="container">
+      <h2 class="welcome">Bem-vindo(a) <b>{{user}}</b></h2>
+      
+      <div class="name-game">
+        <h1 id="title">Jogo da Forca</h1>
+        <p id="sub-title">sem forca</p>
+      </div>
+    
+      <div class="buttons">
+        <button id="jogar">Jogar</button>
+        <button id="ranking">Ranking</button>
+        <a href="{{ url_for('login') }}">
+          <button id="logout">Logout</button>
+        </a>
+      </div>
+    </div>
 
-    <a href="{{ url_for('game', tema=tema, user=user)}}">
-      <button>{{ tema }}</button>
-    </a>
+    <div class="temas">
 
-  {% endfor %}
+      <div class="name-game">
+        <h1 id="title">Temas</h1>
+      </div>
 
-  <a href="{{ url_for('cadastro', user=user) }}">
-    <button>Cadastrar tema</button>
-  </a>
+      <div class="block">
+        {% for tema in nomes %}
+    
+          <a href="{{ url_for('game', tema=tema, user=user)}}">
+            <button>{{ tema }}</button>
+          </a>
+    
+        {% endfor %}
+
+        <button>Profissões Médicas</button>
+    
+      </div>
+
+      <a href="{{ url_for('cadastro', user=user) }}" id="cadastro">
+        <button class="comum">Cadastrar tema</button>
+      </a>
+
+      <button onclick="location.reload()" id="voltar">Voltar</button>
+    </div>
+
+    <div class="ranking">
+      <div class="name-game">
+        <h1 id="title">Ranking</h1>
+      </div>
+
+      <div class="tabela">
+        <table border="1">
+          <tr>
+            <th>Usuário</th>
+            <th>Pontuação</th>
+          </tr>
+          
+          {% for item in ranking %}
+  
+            <tr>
+              <td>{{ item['user'] }}</td>
+              <td><b>{{ item['score'] }}</b></td>
+            </tr>
+  
+          {% endfor %}
+  
+        </table>
+
+        <div class="my-score">
+
+          <p>Minha pontuação: {{my_score['score']}}</p>
+
+        </div>
+
+        <button onclick="location.reload()" id="voltar">Voltar</button>
+        
+        <div id="medalhas">
+          <img src="{{ url_for('static', filename='src/decorator/medalha-ouro.png') }}" alt="" class="medalhas" id="medalha-ouro">
+          <img src="{{ url_for('static', filename='src/decorator/medalha-prata.png') }}" alt="" class="medalhas" id="medalha-prata">
+          <img src="{{ url_for('static', filename='src/decorator/medalha-bronze.png') }}" alt="" class="medalhas" id="medalha-bronze">
+        </div>
+
+      </div>
+
+    </div>
+
+    <img src="{{ url_for('static', filename='src/decorator/pattern.png') }}" alt="" id="pattern-down" class="pattern">
+
+  </main>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
