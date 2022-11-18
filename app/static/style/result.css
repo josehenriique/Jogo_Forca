@@ -122,10 +122,14 @@
 
 }
 
-/* Predefinição */
+body{
+  width: 100vw;
+  height: 100vh;
 
-main{
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .container{
@@ -133,135 +137,41 @@ main{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
+  padding: 20px;
+  gap: 5px;
 
-/* Font */
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+
+  background: var(--white);
+  border: 1px solid var(--brand-gray-0);
+  border-radius: 8px;
+}
 
 h1{
-  font: var(--h2);
+  margin-bottom: 30px;
+  font: var(--h0);
 }
 
-/* Letras */
+/* Pattern */
 
-.letters{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 580px;
-
-  border-radius: 8px;
-  padding: 3px 0;
-
-  margin-bottom: 50px;
-}
-
-.letters button{
-  width: 40px;
-  height: 40px;
-  margin: 2px;
-}
-
-/* Buttons */
-
-.buttons{
-  margin-top: 30px;
-}
-
-.buttons button{
-  margin-top: 8px;
-  width: 250px;
-}
-
-/* Palavra */
-
-.space{
-  display: flex;
-  flex-direction: row;
-}
-
-.space h1{
-  margin: 10px;
-  margin-bottom: 50px;
-}
-
-/* Dica e conceito */
-
-.infos{
-  padding: 5px 8px;
-  gap: 5px;
-
-  width: auto;
+.pattern{
+  width: 350px;
   height: auto;
-  box-sizing: border-box;
-
-  background: var(--white);
-  border: 1px solid var(--brand-gray-0);
-  border-radius: 8px;
-}
-
-.dica, .conceito{
-  font: var(--p1);
-}
-
-#alert_extra{
-  font: var(--p3);
-}
-
-/* Coração */
-
-.dicas{
-  display: flex;
-  flex-direction: row;
-  justify-content: end; 
-
-  width: 100vw;
   position: absolute;
+  /* filter: blur(5px); */
+  
 }
 
-.box{
-  display: flex;
-  flex-direction: row;
-  justify-content: end; 
-
-  padding: 5px 10px;
-  gap: 5px;
-
-  width: auto;
-  height: auto;
-  box-sizing: border-box;
-
-  background: var(--white);
-  border: 1px solid var(--brand-gray-0);
-  border-radius: 8px;
-
-  margin: 10px;
+#pattern-up{
+  top: 0%;
+  left: 0%;
+  
 }
 
-.dicas img{
-  width: 30px;
-  height: auto;
-}
-
-/* Puuppet - Container */
-
-.puppet_container{
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: center;
-  gap: 10%;
-
-  align-self: center;
-  justify-self: center;
-}
-
-/* Puppet */
-
-.puppet img{
-  width: 230px;
-  height: auto;
+#pattern-down{
+  bottom: 0%;
+  right: 0%;
+  transform: rotate(180deg);
 }

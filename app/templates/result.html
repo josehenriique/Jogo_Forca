@@ -5,15 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='style/universal.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/result.css') }}">
   <title>Resultado</title>
 </head>
 <body>
 
-  <h1>Resultado: {{score}}</h1>
+  <img src="{{ url_for('static', filename='src/decorator/pattern.png') }}" alt="" id="pattern-up" class="pattern">
 
-  <a href="{{ url_for('tema', user=user) }}">
-    <button id="menu">Voltar para o menu principal</button>
-  </a>
+  <div class="container">
+    <h1>Resultado: {{score}}</h1>
+
+    <a href="{{ url_for('tema', user=user) }}">
+      <button id="menu">Voltar para o menu principal</button>
+    </a>
+  </div>
+
+  <img src="{{ url_for('static', filename='src/decorator/pattern.png') }}" alt="" id="pattern-down" class="pattern">
   
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

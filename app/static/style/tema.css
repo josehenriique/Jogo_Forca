@@ -177,6 +177,7 @@ button{
 #voltar{
   margin: auto;
   margin-top: 40px;
+  margin-bottom: 0;
 }
 
 /* Ranking */
@@ -255,7 +256,7 @@ tr:nth-child(even){
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around; 
+  justify-content: center; 
   position: relative;
   
   padding: 60px 0px;
@@ -297,6 +298,7 @@ tr:nth-child(even){
 .temas #voltar{
   margin: auto;
   margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .temas a{

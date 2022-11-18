@@ -1,7 +1,7 @@
 import os.path
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = False
+DEBUG = True
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir,'app\storage.db') 
 SQLALCHEMY_TRACK_MODIFICATIONS = True

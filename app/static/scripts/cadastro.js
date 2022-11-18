@@ -28,10 +28,6 @@ $('.prev').on('click', function(){
   prev_fs.show(800)
 })
 
-$('.enviar').on('click', function(){
-  alert($('#inpt_email').val())
-})
-
 $('#formulario .next, #formulario .prev').on('click', function(){
   return false
 })

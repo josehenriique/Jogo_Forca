@@ -1,3 +1,13 @@
+// Carregamento
+$('main').hide()
+
+function loading(){
+  
+  $('.box-load').hide()
+  $('main').show()
+  
+}
+
 // Cosumindo URL
 let host = $(location).attr('host')
 
@@ -6,7 +16,7 @@ let array = path.split("/")
 let path_tema = array[array.length - 1]
 
 // Resultado
-$('#result').show()
+$('#result').hide()
 $('#next').show()
 $('#next').prop('disabled', true)
 
@@ -23,7 +33,7 @@ $('#cabeca').hide()
 
 async function getData(){
 
-  let response = await fetch(`https://${host}/tema/api/${path_tema}`)
+  let response = await fetch(`http://${host}/tema/api/${path_tema}`)
   let data = response.json()
 
   return data
@@ -169,7 +179,6 @@ async function logic(data){
     let score = parseInt(localStorage.getItem('score'))
 
     localStorage.setItem('score', (pontuacao + score))
-    alert('A pontuação desse rodada foi: ' + localStorage.getItem('score'))
 
     // data = {
     //   score: score
@@ -273,7 +282,7 @@ async function logic(data){
 
     btn.addEventListener('click', () => {
 
-      div.innerHTML = `<p>${conceito}</p>`
+      div.innerHTML = `<p><b>Extra:</b> ${conceito}</p>`
 
     })
 
@@ -342,7 +351,7 @@ async function logic(data){
     function loadingDica(dica){
 
       let div = document.querySelector('.dica')
-      div.innerHTML = `<p>${dica}</p>`
+      div.innerHTML = `<p><b>Dica:</b> ${dica}</p>`
 
     }
 
