@@ -33,7 +33,7 @@ $('#cabeca').hide()
 
 async function getData(){
 
-  let response = await fetch(`http://${host}/tema/api/${path_tema}`)
+  let response = await fetch(`https://${host}/tema/api/${path_tema}`)
   let data = response.json()
 
   return data
