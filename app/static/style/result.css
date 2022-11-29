@@ -147,6 +147,8 @@ body{
   background: var(--white);
   border: 1px solid var(--brand-gray-0);
   border-radius: 8px;
+
+  z-index: 30;
 }
 
 h1{
@@ -174,4 +176,14 @@ h1{
   bottom: 0%;
   right: 0%;
   transform: rotate(180deg);
+}
+
+/* Media */
+
+@media (max-width: 700px){
+
+  .pattern{
+    display: none;
+  }
+
 }

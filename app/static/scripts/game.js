@@ -19,6 +19,7 @@ let path_tema = array[array.length - 1]
 $('#result').hide()
 $('#next').show()
 $('#next').prop('disabled', true)
+$('.score').hide()
 
 $('.container').show()
 
@@ -30,6 +31,7 @@ $('#sem-perna').hide()
 $('#um-braco').hide()
 $('#tronco').hide()
 $('#cabeca').hide()
+
 
 async function getData(){
 
@@ -52,13 +54,6 @@ if (localStorage.getItem('dica') === null){
   localStorage.setItem('dica', 0)
 }
 
-if(parseInt(localStorage.getItem('dica')) == 3) {
-  $('#btn_extra').prop('disabled', true)
-  $(`#dica_1`).hide()
-  $(`#dica_2`).hide()
-  $(`#dica_3`).hide()
-}
-
 // localStorage.removeItem('indice_palavra')
 
 async function logic(data){
@@ -78,6 +73,14 @@ async function logic(data){
     mudarPalavra()
 
   }
+
+  coracaoReload()
+
+  let container_dicas = $('.word')
+  let indice_palavra = parseInt(localStorage.getItem('indice_palavra')) - 1
+  let indice_quantPalavras = quantPalavras - 1
+
+  $('.word').append(`<p>${indice_palavra}/${indice_quantPalavras}</p>`)
   
   const space = []
   
@@ -117,24 +120,26 @@ async function logic(data){
   $('#btn_extra').on('click', () => {
 
     let storage_dica = parseInt(localStorage.getItem('dica'))
-    console.log('Storage:', storage_dica)
+    console.log('Storage Dica:', storage_dica)
+
     let dicas, storage
 
     if(storage_dica < 3){
-      dicas = parseInt(storage_dica) + 1
 
+      console.log('Rodando IF...')
+
+      dicas = parseInt(storage_dica) + 1
       storage = parseInt(localStorage.getItem('score'))
 
-      $(`#dica_${dicas}`).hide()
       localStorage.setItem('score', storage - 100)
       localStorage.setItem('dica', dicas)
-
     }
 
     console.log('DICA EXTRA')
     console.log(localStorage.getItem('dica'))
     console.log(storage)
 
+    coracaoReload()
   })
 
   $('#next').on('click', () => {
@@ -161,8 +166,6 @@ async function logic(data){
       storage = 1
     }
 
-    console.log(storage)
-
     name = (dados.palavras[storage.toString()].nome).toUpperCase()
     let dica = dados.palavras[storage].dica
     let conceito = dados.palavras[storage].conceito
@@ -179,12 +182,6 @@ async function logic(data){
     let score = parseInt(localStorage.getItem('score'))
 
     localStorage.setItem('score', (pontuacao + score))
-
-    // data = {
-    //   score: score
-    // }
-
-    // return JSON.stringify(data)
 
   }
 
@@ -269,6 +266,44 @@ async function logic(data){
         return 10;
 
         break;
+      default:
+        break;
+    }
+
+  }
+
+  function coracaoReload(){
+
+    let storage_dica = parseInt(localStorage.getItem('dica'))
+    dicas = parseInt(storage_dica)
+
+    switch (dicas) {
+      case 0:
+        $('#btn_extra').prop('disabled', false)
+        $('#dica_1').show()
+        $('#dica_2').show()
+        $('#dica_3').show()
+        break;
+
+      case 1:
+        $('#dica_1').hide()
+        $('#dica_2').show()
+        $('#dica_3').show()
+        break;
+      
+      case 2:
+        $('#dica_1').hide()
+        $('#dica_2').hide()
+        $('#dica_3').show()
+        break;
+
+      case 3:
+        $('#btn_extra').prop('disabled', true)
+        $('#dica_1').hide()
+        $('#dica_2').hide()
+        $('#dica_3').hide()
+        break;
+    
       default:
         break;
     }
@@ -384,6 +419,12 @@ async function logic(data){
         
         console.log('Você completou a palavra')
         cadastroScore(puppet(tentativas))
+
+        $('.score').show()
+
+        let div_score = document.querySelector('.score')
+        div_score.innerHTML = `<p class="score_word"><b>Pontuação da Palavra:</b> ${puppet(tentativas)}</p>`
+
         $('#next').prop('disabled', false)
         has_line = true
       } 

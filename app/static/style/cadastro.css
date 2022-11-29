@@ -167,6 +167,12 @@ main{
   position: relative;
   width: 60%;
   height: 500px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 
 fieldset{
@@ -225,4 +231,14 @@ fieldset:not(:first-of-type){
 input:not(input[type="submit"]){
   margin-bottom: 15px;
   width: 100%;
+}
+
+/* Media */
+
+@media (max-width: 450px){
+
+  .palavras{
+    width: 100%;
+  }
+
 }

@@ -360,15 +360,10 @@ tr:nth-child(even){
 
 /* Media */
 
-@media (max-width: 770px){
+@media (max-width: 850px){
 
   .pattern{
     display: none;
-  }
-
-  main{
-    background-color: #8EC5FC;
-    background-image: linear-gradient(45deg, var(--compl-blue-3) 0%, var(--brand-purple-3) 100%);
   }
 
   .welcome{
@@ -378,6 +373,12 @@ tr:nth-child(even){
     background-color: white;
     border-radius: 10px;
     box-shadow: var(--shadow-gray-4);
+  }
+
+  /* Ranking */
+
+  .ranking{
+    height: 90vh;
   }
 
 }
@@ -397,5 +398,9 @@ tr:nth-child(even){
 @media (max-width: 450px){
   .welcome{
     width: 250px;
+  }
+
+  .block{
+    width: 80%;
   }
 }
