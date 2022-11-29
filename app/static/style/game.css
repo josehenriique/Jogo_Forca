@@ -306,7 +306,9 @@ h1{
 /* Score Word */
 
 .score{
-  margin-top: 15px;
+  width: 135;
+  text-align: center;
+  margin: 15px auto 0 auto;
 }
 
 /* Media */
@@ -342,7 +344,7 @@ h1{
   }
 
   .controllers_container{
-    transform: scale(0.9);
+    transform: scale(1);
   }
 
   .puppet img{
